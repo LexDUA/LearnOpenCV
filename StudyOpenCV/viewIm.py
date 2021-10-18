@@ -6,6 +6,8 @@ Created on 18 окт. 2021 г.
 import settings
 import cv2
 
+#from https://tproger.ru/translations/opencv-python-guide/
+
 #===============================================================================
 # image = cv2.imread(r"C:\Users\Alex\Desktop\python\openCV\testFaces.jpg")
 # cv2.imshow("Image", image)
@@ -21,8 +23,10 @@ def viewImage(image, name_of_window):
 
 
 image_path = settings.getFromSetting('image_path')
-path_filter = settings.getFromSetting('path_filter')
-face_cascade = cv2.CascadeClassifier(path_filter)
+filter_path = settings.getFromSetting('filter_path')
+face_cascade = cv2.CascadeClassifier(filter_path + '\haarcascade_frontalface_default.xml')
+#face_cascade = cv2.CascadeClassifier(filter_path + '\haarcascade_frontalface_alt.xml')
+
 image = cv2.imread(image_path)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(
